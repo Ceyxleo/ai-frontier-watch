@@ -1,0 +1,520 @@
+{
+  "date": "2026-11-20",
+  "window": {
+    "from": "2026-10-30",
+    "to": "2026-11-20"
+  },
+  "generated_at": "2026-11-20T06:41:06+00:00",
+  "model": "claude-opus-5-5",
+  "summary": [
+    "Claude Fable 5.2 与 GPT-6.2 同月发布，数字多为厂商自报，需用自己的任务对比。",
+    "coding agent 迁移 NICAM 等 Fortran 气候模型，可靠的前提是确定性验证 oracle。",
+    "水文 AI 转向辅助物理模型：CaRT+ 追平 LSTM，PARDIG 开放高频降水数据。"
+  ],
+  "items": [
+    {
+      "id": "2026-11-20-ffe8a0",
+      "area": "frontier",
+      "title": "Anthropic 发布 Claude Fable 5.2 / Mythos 5.2",
+      "what": "Fable 5.2 为公开版，据转引的 CHANGELOG 已是 Claude Code 默认的 Fable 模型，1M 上下文，每百万 token 输入 $8、输出 $40；Mythos 5.2 限制访问。能力数字为二手信息。",
+      "why": "它直接决定日常 coding agent 的默认模型、上下文长度和成本。",
+      "relevance": "科研 agent 工作流；大型科学代码库的理解与修改",
+      "try": "拿一个真实的模型代码改动任务（如给汇流模块加诊断输出），对比 5.1 与 5.2 的 token 用量和成败。",
+      "effort": "约半天，API 费用几美元到几十美元",
+      "links": [
+        {
+          "title": "Claude Fable and Mythos 5.2",
+          "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+        },
+        {
+          "title": "Anthropic announcements",
+          "url": "https://www.anthropic.com/news/announcements"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-09",
+      "tags": [
+        "Claude",
+        "前沿模型",
+        "长上下文"
+      ],
+      "en": {
+        "title": "Anthropic releases Claude Fable 5.2 / Mythos 5.2",
+        "what": "Fable 5.2 is the public model and, per a quoted CHANGELOG, now the default Fable model in Claude Code: 1M context, $8/$40 per million input/output tokens. Mythos 5.2 is restricted-access. Capability figures are second-hand.",
+        "why": "It sets the default model, context length and cost of everyday coding-agent work.",
+        "relevance": "Research agent workflows; understanding and editing large scientific codebases",
+        "try": "Run one real model-code change (e.g., adding a diagnostic output to a routing module) on 5.1 vs 5.2 and compare token usage and success.",
+        "effort": "About half a day; a few to tens of dollars in API cost",
+        "tags": [
+          "Claude",
+          "frontier models",
+          "long context"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-549a77",
+      "area": "frontier",
+      "title": "OpenAI GPT-6.2 Astra / Sol 发布，第三方评价分歧",
+      "what": "Astra 面向最难的项目，Sol 为日常模型，上线 ChatGPT、Codex 和 API；官方称 Astra 在复杂 agent 任务上比 GPT-6.1 Sol 少用 62% token，TNW 报道降价 20%，Epoch AI 认为其真实任务表现落后 Fable 5.2。",
+      "why": "厂商自报与第三方结论不一致，是判断真跃迁还是包装的好样本。",
+      "relevance": "科研 agent 工作流；模型选型与评测",
+      "try": "在 Codex 里用 Astra 跑和 Fable 5.2 相同的代码任务做 A/B 对比，先不切换主力工具。",
+      "effort": "约 1–2 小时，少量 API 费用",
+      "links": [
+        {
+          "title": "Introducing GPT-6.2 Astra and Sol",
+          "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+        },
+        {
+          "title": "TNW: GPT-6.2 Astra/Sol launch",
+          "url": "https://thenextweb.com/news/gpt-6-2-astra-sol-openai-launch-price-epoch-testers"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "",
+      "tags": [
+        "OpenAI",
+        "前沿模型",
+        "A/B 对比"
+      ],
+      "en": {
+        "title": "OpenAI launches GPT-6.2 Astra / Sol amid mixed reviews",
+        "what": "Astra targets the hardest projects and Sol is the everyday model, available in ChatGPT, Codex and the API. OpenAI says Astra uses 62% fewer tokens than GPT-6.1 Sol on complex agent tasks; TNW reports a 20% price cut, and Epoch AI finds it trails Fable 5.2 on real-world tasks.",
+        "why": "Vendor claims and third-party results disagree, which makes it a good test of real progress versus marketing.",
+        "relevance": "Research agent workflows; model selection and evaluation",
+        "try": "Run the same coding task you gave Fable 5.2 through Astra in Codex as an A/B test, without switching your main tool yet.",
+        "effort": "About 1–2 hours; small API cost",
+        "tags": [
+          "OpenAI",
+          "frontier models",
+          "A/B testing"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-91afd1",
+      "area": "workflow",
+      "title": "n8n 多 agent 系统入门：架构模式与校验点",
+      "what": "文章梳理五种多 agent 架构（层级、顺序、并行、handoff、网络），列出 token 成本倍增、错误沿链传播、prompt injection 等代价，建议在交接处设校验点或并行取众数，并用 LangSmith/LangFuse 做 tracing。",
+      "why": "「何时不该用多 agent」和「校验点」两节可以直接用到科研 agent 设计上（文章有自家产品推广成分）。",
+      "relevance": "科研 agent 工作流；文献检索与核引流水线",
+      "try": "读 Challenges 与 FAQ 中「When should I use multi-agent」两节，再在自己流水线的每次交接处加一个确定性校验（如用 DOI/CrossRef 核对引用）。",
+      "effort": "阅读约 20 分钟，免费",
+      "links": [
+        {
+          "title": "Multi-agent systems: Frameworks & step-by-step tutorial",
+          "url": "https://blog.n8n.io/multi-agent-systems/"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2025-12-22",
+      "tags": [
+        "多 agent",
+        "校验点",
+        "入门"
+      ],
+      "en": {
+        "title": "n8n primer on multi-agent systems: patterns and checkpoints",
+        "what": "Covers five multi-agent architectures (hierarchical, sequential, parallel, handoff, network), the costs (multiplied tokens, error propagation down the chain, prompt injection), and mitigations such as checkpoints between agents or parallel majority voting, with tracing via LangSmith/LangFuse.",
+        "why": "The sections on when not to use multi-agent setups and on checkpoints apply directly to research agents, despite some product promotion.",
+        "relevance": "Research agent workflows; literature search and citation-checking pipelines",
+        "try": "Read the Challenges section and the FAQ entry 'When should I use multi-agent', then add one deterministic check at each handoff in your pipeline (e.g., verify citations via DOI/CrossRef).",
+        "effort": "About 20 minutes of reading; free",
+        "tags": [
+          "multi-agent",
+          "checkpoints",
+          "primer"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-8c3bde",
+      "area": "workflow",
+      "title": "Claude Code v2.1.321–325 修复权限与沙箱漏洞",
+      "what": "修复只读 Bash 跑到沙箱外、cp/mv 到目录时 deny 规则不生效、MCP OAuth 重定向时泄露 refresh token 等问题，另修了 zstd 解码安全问题；同周 Codex v0.169.0 也调整了 exec 沙箱下的配置加载规则。",
+      "why": "在 HPC 上无人值守跑 agent 时，这些问题直接影响数据安全。",
+      "relevance": "HPC 上的科研 agent 工作流；agent 权限与沙箱",
+      "try": "把 Claude Code 升到 ≥ v2.1.325，并检查保护输入数据目录的 deny 规则是否依赖 cp/mv 到目录这条路径。",
+      "effort": "约 30 分钟，免费",
+      "links": [
+        {
+          "title": "This week in Claude Code, Codex and Gemini CLI (Nov 15, 2026)",
+          "url": "https://dev.to/aicoding-guide/this-week-in-claude-code-codex-and-gemini-cli-week-of-november-15-2026-4pmm"
+        },
+        {
+          "title": "Claude Code changelog",
+          "url": "https://code.claude.com/docs/en/changelog"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-15",
+      "tags": [
+        "Claude Code",
+        "安全",
+        "沙箱"
+      ],
+      "en": {
+        "title": "Claude Code v2.1.321–325 fixes permission and sandbox holes",
+        "what": "Fixes include read-only Bash escaping the sandbox, deny rules not applying when cp/mv targets a directory, and MCP OAuth leaking refresh tokens on redirect, plus a zstd decoding security fix. The same week, Codex v0.169.0 changed how config is loaded under the exec sandbox.",
+        "why": "These issues directly affect data safety when agents run unattended on HPC.",
+        "relevance": "Research agent workflows on HPC; agent permissions and sandboxing",
+        "try": "Upgrade Claude Code to v2.1.325 or later and check whether the deny rules protecting your input data rely on cp/mv into a directory.",
+        "effort": "About 30 minutes; free",
+        "tags": [
+          "Claude Code",
+          "security",
+          "sandbox"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-644d96",
+      "area": "workflow",
+      "title": "Claude Code 把 NICAM 14 万行 Fortran 迁移到 C++/Kokkos",
+      "what": "在人工审查下，Claude Code 将约 14 万行 Fortran/OpenACC 翻译为 3.5 万行 C++/Kokkos，覆盖动力核和 7 个物理包；100 成员集合检验显示与原模型统计一致，整体在 GH200 上加速 1.71 倍、在 MI300A 上加速 1.54 倍。",
+      "why": "这是目前规模最大、验证最完整的 coding agent 改造气候模型代码的实例。",
+      "relevance": "气候与水文模型代码迁移；GPU 移植；agent 加验证 oracle 的工作流",
+      "try": "选一个小的 Fortran 子程序，让 agent 翻译并写对比测试，用原 Fortran 输出做 oracle。",
+      "effort": "阅读 1–2 小时；动手约 1 天，API 费用约几十美元（估计）",
+      "links": [
+        {
+          "title": "NICAM to C++/Kokkos with Claude Code (arXiv)",
+          "url": "https://arxiv.org/abs/2610.41313"
+        },
+        {
+          "title": "LAFT: agent-based Fortran-to-JAX translation",
+          "url": "https://arxiv.org/html/2610.12662"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-10-30",
+      "tags": [
+        "代码迁移",
+        "Fortran",
+        "GPU",
+        "coding agent"
+      ],
+      "en": {
+        "title": "Claude Code ports NICAM's 140k lines of Fortran to C++/Kokkos",
+        "what": "Under human review, Claude Code translated about 140k lines of Fortran/OpenACC into 35k lines of C++/Kokkos, covering the dynamical core and 7 physics packages. A 100-member ensemble test shows statistical consistency with the original, with whole-app speedups of 1.71x on GH200 and 1.54x on MI300A.",
+        "why": "It is the largest and best-validated example so far of a coding agent rewriting climate-model code.",
+        "relevance": "Porting climate and hydrology model code; GPU porting; agent-plus-verification-oracle workflows",
+        "try": "Pick a small Fortran subroutine, have the agent translate it and write comparison tests, using the original Fortran output as the oracle.",
+        "effort": "1–2 hours to read; about 1 day hands-on, roughly tens of dollars in API cost (estimate)",
+        "tags": [
+          "code porting",
+          "Fortran",
+          "GPU",
+          "coding agent"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-ddcb91",
+      "area": "workflow",
+      "title": "DiscoveryAgent：带 checkpoint 和审计 agent 的科研框架",
+      "what": "科学家在每轮研究之间选择、修改或替换假设，审计 agent 查询带 checkpoint 的记录来追溯结论、复现分析；摘要称科学家配合审计 agent 找到的有效错误是纯人工审查的 14 倍。",
+      "why": "它给 AI scientist 结果不可信的问题提供了具体可搭的工程办法。",
+      "relevance": "科研 agent 工作流；分析可复现性与审计",
+      "try": "在自己的分析流程中为每一步写结构化记录（输入、代码、输出哈希），再起一个只读审计 sub-agent 复查。",
+      "effort": "原型约半天，少量 API 费用",
+      "links": [
+        {
+          "title": "DiscoveryAgent (arXiv)",
+          "url": "https://arxiv.org/abs/2611.21950"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-16",
+      "tags": [
+        "AI scientist",
+        "审计",
+        "可复现性"
+      ],
+      "en": {
+        "title": "DiscoveryAgent: scientist-centred research agents with auditing",
+        "what": "Scientists select, edit or replace hypotheses between research rounds, while an auditing agent queries checkpointed records to trace conclusions and reproduce analyses. The abstract reports that scientists working with the auditor found 14x more valid errors than human review alone.",
+        "why": "It offers a concrete, buildable answer to why AI-scientist results are hard to trust.",
+        "relevance": "Research agent workflows; reproducibility and auditing of analyses",
+        "try": "Log a structured record for each analysis step (inputs, code, output hash), then run a read-only auditing sub-agent to re-check them.",
+        "effort": "About half a day for a prototype; small API cost",
+        "tags": [
+          "AI scientist",
+          "auditing",
+          "reproducibility"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-b1677b",
+      "area": "workflow",
+      "title": "DOE 开源 Genesis Agent Skills 技能库",
+      "what": "由多个国家实验室共建的 coding agent 技能包，覆盖 AI 安全、agent 评测与监控、数据治理、科学工作流和多 agent 系统；其中 Fermilab 的技能可把科学 ML 项目整理成标准 benchmark。",
+      "why": "这是 Agent Skills 格式在科研场景里的公开实例，可以直接装进 Claude Code 试用。",
+      "relevance": "科研 agent 工作流；科学 ML 数据集与 benchmark 打包",
+      "try": "克隆 GitLab 仓库，浏览科学工作流和 agent 评测两类技能，挑一个装进 Claude Code 试用。",
+      "effort": "约 1 小时，免费",
+      "links": [
+        {
+          "title": "Fermilab: Genesis Agent Skills release",
+          "url": "https://news.fnal.gov/2026/11/genesis-agent-skills-release-to-support-innovation-across-the-genesis-mission/"
+        },
+        {
+          "title": "genesis-skills repository",
+          "url": "https://gitlab.osti.gov/genesis/genesis-skills"
+        },
+        {
+          "title": "DOE Office of Science article",
+          "url": "https://www.energy.gov/science/articles/genesis-agent-skills-release-support-innovation-across-genesis-mission"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-06",
+      "tags": [
+        "Agent Skills",
+        "DOE",
+        "开源"
+      ],
+      "en": {
+        "title": "DOE open-sources the Genesis Agent Skills library",
+        "what": "A skills package for coding agents built across national labs, covering AI safety, agent evaluation and monitoring, data governance, scientific workflows and multi-agent systems. A Fermilab skill packages scientific ML projects into standardized benchmarks.",
+        "why": "It is a public example of the Agent Skills format in research settings and can be installed in Claude Code right away.",
+        "relevance": "Research agent workflows; packaging scientific ML datasets as benchmarks",
+        "try": "Clone the GitLab repo, browse the scientific-workflow and agent-evaluation skills, and install one in Claude Code to test.",
+        "effort": "About 1 hour; free",
+        "tags": [
+          "Agent Skills",
+          "DOE",
+          "open source"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-9bae28",
+      "area": "earth",
+      "title": "CaRT+：受物理定律约束的集总流域模型追平 LSTM",
+      "what": "用守恒、耗散、聚合三条定律约束集总模型，在 AI agent 辅助下逐步改进到 14 个状态、35 个参数；单模型在留出年份的中位 NSE 为英国 0.863、美国 0.765、澳大利亚 0.778（澳大利亚开发时未使用），与 LSTM 相当。",
+      "why": "它从物理模型一侧回答了能否追上 LSTM，并把 agent 用在了提假设、改模型结构的循环里。",
+      "relevance": "概念水文模型结构改进；agent 辅助的参数化研究",
+      "try": "精读正文和 SI 中的 agent 辅助改进流程与澳大利亚外推验证，并确认代码是否开源。",
+      "effort": "约半天，免费",
+      "links": [
+        {
+          "title": "CaRT+ (arXiv)",
+          "url": "https://arxiv.org/abs/2611.06382"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-04",
+      "tags": [
+        "水文模型",
+        "LSTM",
+        "物理约束",
+        "agent"
+      ],
+      "en": {
+        "title": "CaRT+: law-constrained lumped catchment model matches LSTMs",
+        "what": "A lumped model constrained by conservation, dissipation and aggregation laws is improved step by step with AI-agent assistance into a 14-state, 35-parameter model. The single model's median holdout-year NSE is 0.863 (UK), 0.765 (US) and 0.778 (Australia, unseen during development), on par with LSTMs.",
+        "why": "It shows from the physics side that process models can match LSTMs, and puts agents in the loop of proposing hypotheses and revising model structure.",
+        "relevance": "Improving conceptual hydrological model structure; agent-assisted parameterization research",
+        "try": "Read the agent-assisted refinement loop in the main text and SI plus the Australian out-of-sample test, and check whether code is released.",
+        "effort": "About half a day; free",
+        "tags": [
+          "hydrological models",
+          "LSTM",
+          "physics constraints",
+          "agents"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-d4b6e7",
+      "area": "earth",
+      "title": "DeepMind 开放 PARDIG 全球 15 分钟降水数据集",
+      "what": "用 ML 结合卫星图像和大气数据估算全球降水，0.1° 网格、15 分钟间隔，记录始于 1999 年，近实时版每 6 小时更新一次；DeepMind 自报对小到中雨的逐小时探测能力比 IMERG-Final 高 30% 以上。",
+      "why": "它可能成为替代 IMERG 的开放高时间分辨率水文驱动数据。",
+      "relevance": "全球降水驱动；洪水与干旱监测；径流模拟",
+      "try": "找到官方博文和数据许可后，选几个有径流观测的流域，分别用 PARDIG 和 IMERG 驱动模型，比较洪峰时间。",
+      "effort": "数据准备约 1–2 天，数据免费（待确认许可）",
+      "links": [
+        {
+          "title": "Let's Data Science: DeepMind opens PARDIG",
+          "url": "https://letsdatascience.com/news/google-deepmind-opens-pardig-global-ai-rainfall-datasets-to-7376ea32"
+        },
+        {
+          "title": "XenoSpectrum: SatWeave and PARDIG",
+          "url": "https://xenospectrum.com/en/deepmind-weathernext-satweave-pardig-datasets/"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-13",
+      "tags": [
+        "降水",
+        "数据集",
+        "DeepMind"
+      ],
+      "en": {
+        "title": "DeepMind opens PARDIG, a global 15-minute rainfall dataset",
+        "what": "An ML estimate of global precipitation from satellite imagery and atmospheric data: 0.1° grid, 15-minute steps, from 1999 onward, with a near-real-time version updated every 6 hours. DeepMind reports over 30% better hourly detection of light-to-moderate rain than IMERG-Final.",
+        "why": "It could become an open, high-frequency alternative to IMERG for driving hydrological models.",
+        "relevance": "Global precipitation forcing; flood and drought monitoring; runoff simulation",
+        "try": "Once the official post and license are found, force a model with PARDIG and with IMERG over a few gauged basins and compare flood-peak timing.",
+        "effort": "About 1–2 days of data prep; data free (license to be confirmed)",
+        "tags": [
+          "precipitation",
+          "dataset",
+          "DeepMind"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-cdeaa1",
+      "area": "earth",
+      "title": "Hydrograd v2.0：非结构网格上的可微分二维浅水模型",
+      "what": "基于 JAX 的格心有限体积二维浅水方程求解器，提供稳态和非稳态 adjoint，Manning 等阻力闭合项可微分，可用于率定和学习闭合项（摘要中有一处异常的 2027 年引用，待核实）。",
+      "why": "它把可微分水文从集总模型推进到二维水动力，可以用梯度来率定糙率。",
+      "relevance": "可微分水动力模型；糙率等参数的区域化率定",
+      "try": "下期打开原文，确认代码仓库和测试算例，再跑一个简单溃坝或河道算例。",
+      "effort": "约 1–2 小时，免费",
+      "links": [
+        {
+          "title": "Hydrograd v2.0 (arXiv)",
+          "url": "https://arxiv.org/html/2611.11540"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-08",
+      "tags": [
+        "可微分模型",
+        "JAX",
+        "浅水方程"
+      ],
+      "en": {
+        "title": "Hydrograd v2.0: differentiable 2D shallow-water model on unstructured meshes",
+        "what": "A JAX cell-centred finite-volume shallow-water solver with steady and unsteady adjoints and differentiable friction closures (e.g., Manning), for calibration and closure learning. The abstract contains an odd citation dated 2027 that needs checking.",
+        "why": "It pushes differentiable hydrology from lumped models to 2D hydrodynamics, enabling gradient-based roughness calibration.",
+        "relevance": "Differentiable hydrodynamic models; regionalized calibration of roughness and similar parameters",
+        "try": "Next week, open the paper to confirm the code repository and test cases, then run a simple dam-break or channel case.",
+        "effort": "About 1–2 hours; free",
+        "tags": [
+          "differentiable models",
+          "JAX",
+          "shallow water"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-20-6ebdd0",
+      "area": "earth",
+      "title": "Ai2 与 Google 合作开发 NeuralGCM+ 耦合气候模型",
+      "what": "Google.org 资助三年（据 GeekWire 约 500 万美元加云额度），在 NeuralGCM 上耦合海洋和海冰、做几十年稳定模拟、检验更暖气候下的泛化，并开源；博客特别关注美国西南部的降水与水资源。",
+      "why": "博客清楚对比了 ACE 与 NeuralGCM 两种混合路线的泛化差异，和水文直接相关。",
+      "relevance": "混合物理–AI 气候模型；为陆面和径流模拟提供气候驱动",
+      "try": "读博客中「NeuralGCM's hybrid design」一段和三条技术路线；模型尚未交付，先记下。",
+      "effort": "约 15 分钟，免费",
+      "links": [
+        {
+          "title": "Ai2 blog: Google climate partnership",
+          "url": "https://allenai.org/blog/google-climate-partnership"
+        },
+        {
+          "title": "NeuralGCM GitHub",
+          "url": "https://github.com/neuralgcm/neuralgcm"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-04",
+      "tags": [
+        "NeuralGCM",
+        "气候模型",
+        "混合建模"
+      ],
+      "en": {
+        "title": "Ai2 and Google partner on NeuralGCM+ coupled climate model",
+        "what": "A three-year Google.org grant (about $5M plus cloud credits, per GeekWire) to couple ocean and sea ice to NeuralGCM, run stable multi-decade simulations, test generalization to warmer climates, and open-source the result. The blog highlights precipitation and water availability in the US Southwest.",
+        "why": "The blog clearly contrasts how the ACE and NeuralGCM hybrid approaches generalize, which matters directly for hydrology.",
+        "relevance": "Hybrid physics–AI climate models; climate forcing for land-surface and runoff modelling",
+        "try": "Read the 'NeuralGCM's hybrid design' section and the three workstreams; nothing is delivered yet, so just note it.",
+        "effort": "About 15 minutes; free",
+        "tags": [
+          "NeuralGCM",
+          "climate models",
+          "hybrid modelling"
+        ]
+      }
+    }
+  ],
+  "deep_dive": null,
+  "try_this": [
+    {
+      "title": "升级 Claude Code 并检查 deny 规则",
+      "steps": "1）在 HPC 上运行 claude --version，升级到 ≥ v2.1.325；2）列出保护输入数据目录的 deny 规则；3）分别用 cp 和 mv 把文件写入受保护目录，确认会被拦截；4）Code Mode 保持关闭。",
+      "cost": "约 30 分钟，免费"
+    },
+    {
+      "title": "用 agent 翻译一个小 Fortran 子程序，以原代码输出做 oracle",
+      "steps": "1）选一个几百行的 Fortran 子程序（如热量收支计算）；2）用原 Fortran 生成一组输入输出作为参考；3）让 Claude Code 翻译成 Python/JAX 或 C++，并写数值对比测试；4）记录迭代轮数、token 用量和最大误差。",
+      "cost": "约 1 天，API 费用约几十美元（估计）"
+    }
+  ],
+  "skip": [
+    {
+      "title": "Gemini 4 Neon 与 FINAL-Bench 天气排行榜",
+      "reason": "只在 casrai.org 一个站点出现，没有官方来源可核对。"
+    },
+    {
+      "title": "Claude Code 实验性 Code Mode",
+      "reason": "可选功能、默认关闭，对科研流程的价值还不清楚。"
+    },
+    {
+      "title": "Toward a Science of AI Agent Societies",
+      "reason": "纯立场论文，没有实验结果，和科研实践关系弱。"
+    }
+  ],
+  "watch_next": [
+    "PARDIG 官方博文、数据许可和下载方式，以及与 IMERG 在流域径流上的对比。",
+    "Hydrograd v2.0、Nature Water 水循环 AI 文章和 GRL WeatherNext 气旋评估的原文结论。",
+    "CaRT+、DiscoveryAgent 是否开源代码，Genesis Agent Skills 里有没有地球科学相关技能。"
+  ],
+  "preferences_learned": "",
+  "en": {
+    "summary": [
+      "Claude Fable 5.2 and GPT-6.2 landed the same month; most numbers are self-reported, so test on your own tasks.",
+      "Coding agents porting Fortran climate models like NICAM are reliable only with deterministic verification oracles.",
+      "AI in hydrology is shifting to aiding physical models: CaRT+ matches LSTMs and PARDIG opens high-frequency rainfall."
+    ],
+    "deep_dive": null,
+    "try_this": [
+      {
+        "title": "Upgrade Claude Code and audit your deny rules",
+        "steps": "1) On your HPC system, run claude --version and upgrade to v2.1.325 or later; 2) list the deny rules that protect your input-data directories; 3) try writing a file into a protected directory with both cp and mv and confirm it is blocked; 4) leave Code Mode off.",
+        "cost": "About 30 minutes; free"
+      },
+      {
+        "title": "Have an agent translate a small Fortran routine, using the original output as the oracle",
+        "steps": "1) Pick a Fortran routine of a few hundred lines (e.g., a heat-budget calculation); 2) generate reference input/output pairs from the original Fortran; 3) ask Claude Code to translate it to Python/JAX or C++ and write numerical comparison tests; 4) record iterations, token usage and maximum error.",
+        "cost": "About 1 day; roughly tens of dollars in API cost (estimate)"
+      }
+    ],
+    "skip": [
+      {
+        "title": "Gemini 4 Neon and the FINAL-Bench weather leaderboard",
+        "reason": "Reported only by casrai.org, with no official source to verify."
+      },
+      {
+        "title": "Claude Code's experimental Code Mode",
+        "reason": "Opt-in and off by default; its value for research workflows is unclear."
+      },
+      {
+        "title": "Toward a Science of AI Agent Societies",
+        "reason": "A position paper with no experiments and little bearing on research practice."
+      }
+    ],
+    "watch_next": [
+      "PARDIG's official post, license and download access, plus comparisons with IMERG for basin runoff.",
+      "Full-text findings of Hydrograd v2.0, the Nature Water piece on AI and the water cycle, and the GRL evaluation of WeatherNext cyclones.",
+      "Whether CaRT+ and DiscoveryAgent release code, and whether Genesis Agent Skills includes Earth-science skills."
+    ]
+  }
+}
