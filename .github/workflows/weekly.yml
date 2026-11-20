@@ -1,0 +1,71 @@
+name: weekly
+
+on:
+  schedule:
+    - cron: "47 13 * * 1"   # Monday 13:47 UTC = 7:47 CST (8:47 CDT in summer)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "weekly = 整理知识 + 出周报；distill = 只整理知识"
+        type: choice
+        options: [weekly, distill]
+        default: weekly
+      window_days:
+        description: "检索过去几天（1–60）"
+        type: string
+        default: "7"
+      must_read:
+        description: "必读 URL（https，空格分隔，可留空）"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scout
+  cancel-in-progress: false
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -r scout/requirements.txt
+
+      - name: Run scout
+        id: run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PRIVACY_DENYLIST: ${{ secrets.PRIVACY_DENYLIST }}
+          MODE: ${{ inputs.mode || 'weekly' }}
+          WINDOW_DAYS: ${{ inputs.window_days || '7' }}
+          MUST_READ: ${{ inputs.must_read || '' }}
+        run: python scout/run_weekly.py --mode "$MODE" --window-days "$WINDOW_DAYS" --must-read "$MUST_READ"
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/weeks docs/data/index.json docs/data/usage.json docs/data/knowledge
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+            exit 0
+          fi
+          git commit -m "scout: ${MODE:-weekly} $(date -u +%Y-%m-%d)"
+          # the web page may have written state.json meanwhile; we never touch that file
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1
+        env:
+          MODE: ${{ inputs.mode || 'weekly' }}

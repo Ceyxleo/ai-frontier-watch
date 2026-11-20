@@ -1,0 +1,254 @@
+{
+  "date": "2026-11-23",
+  "window": {
+    "from": "2026-11-02",
+    "to": "2026-11-23"
+  },
+  "generated_at": "2026-11-23T13:58:00Z",
+  "model": "claude-opus-5-5",
+  "summary": [
+    "【示例】本期三句话的第一句。",
+    "【示例】第二句，讲最重要的进展。",
+    "【示例】第三句，讲和研究最相关的一条。"
+  ],
+  "items": [
+    {
+      "id": "2026-11-23-01",
+      "area": "frontier",
+      "title": "【示例】Multi-agent 系统的几种常见架构",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：可以用在日常的科研 agent 工作流里。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "n8n blog: multi-agent systems",
+          "url": "https://blog.n8n.io/multi-agent-systems/"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-11",
+      "tags": [
+        "multi-agent",
+        "agent"
+      ]
+    },
+    {
+      "id": "2026-11-23-02",
+      "area": "frontier",
+      "title": "【示例】某实验室发布新一代推理模型",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：可以用在日常的科研 agent 工作流里。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "示例链接",
+          "url": "https://example.com/item-2"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-12",
+      "tags": [
+        "multi-agent",
+        "agent"
+      ]
+    },
+    {
+      "id": "2026-11-23-03",
+      "area": "frontier",
+      "title": "【示例】MCP 新版本支持长任务",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：可以用在日常的科研 agent 工作流里。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "示例链接",
+          "url": "https://example.com/item-3"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-13",
+      "tags": [
+        "multi-agent",
+        "agent"
+      ]
+    },
+    {
+      "id": "2026-11-23-04",
+      "area": "frontier",
+      "title": "【示例】Agent 评测基准的新进展",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：可以用在日常的科研 agent 工作流里。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "示例链接",
+          "url": "https://example.com/item-4"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-14",
+      "tags": [
+        "multi-agent",
+        "agent"
+      ]
+    },
+    {
+      "id": "2026-11-23-05",
+      "area": "earth",
+      "title": "【示例】AI 天气模型和数值模式的混合方案",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：和河流-湖泊耦合模拟有关，可以借鉴它的验证方法。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "示例链接",
+          "url": "https://example.com/item-5"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-15",
+      "tags": [
+        "水文",
+        "emulator"
+      ]
+    },
+    {
+      "id": "2026-11-23-06",
+      "area": "earth",
+      "title": "【示例】可微分水文模型做全球参数区域化",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：和河流-湖泊耦合模拟有关，可以借鉴它的验证方法。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "示例链接",
+          "url": "https://example.com/item-6"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-16",
+      "tags": [
+        "水文",
+        "emulator"
+      ]
+    },
+    {
+      "id": "2026-11-23-07",
+      "area": "earth",
+      "title": "【示例】LLM 生成水库调度规则",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：和河流-湖泊耦合模拟有关，可以借鉴它的验证方法。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "示例链接",
+          "url": "https://example.com/item-7"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-17",
+      "tags": [
+        "水文",
+        "emulator"
+      ]
+    },
+    {
+      "id": "2026-11-23-08",
+      "area": "workflow",
+      "title": "【示例】用 coding agent 改 Fortran 模型代码",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：可以用在日常的科研 agent 工作流里。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "示例链接",
+          "url": "https://example.com/item-8"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-18",
+      "tags": [
+        "科研工作流"
+      ]
+    },
+    {
+      "id": "2026-11-23-09",
+      "area": "workflow",
+      "title": "【示例】文献精读 agent 的引用核对流程",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：可以用在日常的科研 agent 工作流里。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "示例链接",
+          "url": "https://example.com/item-9"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-10",
+      "tags": [
+        "科研工作流"
+      ]
+    },
+    {
+      "id": "2026-11-23-10",
+      "area": "workflow",
+      "title": "【示例】AI scientist 系统自动做数据分析",
+      "what": "这是一条示例条目，用来在本地预览网页的排版。真实内容由每周的 agent 生成。",
+      "why": "示例：说明为什么值得看，一到两句话。",
+      "relevance": "示例：可以用在日常的科研 agent 工作流里。",
+      "try": "示例：读原文第 3 节，挑一个小例子在本机跑一遍。",
+      "effort": "约 30 分钟，无额外花费",
+      "links": [
+        {
+          "title": "示例链接",
+          "url": "https://example.com/item-10"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-11",
+      "tags": [
+        "科研工作流"
+      ]
+    }
+  ],
+  "deep_dive": null,
+  "try_this": [
+    {
+      "title": "【示例】试一个 orchestrator–worker 小例子",
+      "steps": "照原文的图搭一个两 agent 的流程，处理一篇文献。",
+      "cost": "约 1 小时",
+      "item_ids": [
+        "2026-11-23-01"
+      ]
+    }
+  ],
+  "skip": [
+    {
+      "title": "【示例】某个只有宣传稿的发布",
+      "reason": "没有技术细节，等论文出来再看。"
+    }
+  ],
+  "watch_next": [
+    "【示例】下期继续盯的一件事"
+  ],
+  "preferences_learned": ""
+}

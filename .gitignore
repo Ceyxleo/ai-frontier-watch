@@ -1,0 +1,10 @@
+# 工作区本地文件（含内部进度，不公开）
+STATUS.md
+LOG.md
+.claude/
+# Python
+__pycache__/
+*.pyc
+.venv/
+# macOS
+.DS_Store
