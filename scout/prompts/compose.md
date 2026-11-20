@@ -22,6 +22,7 @@
 - skip：可以先不管的 1–3 条，附理由。
 - watch_next：下期继续盯的 1–3 件事。
 - preferences_learned：从读者反馈看出的偏好，一两句；没有反馈就留空字符串。
+- **英文版**：网页可以切换中英文，所以每条还要写 `en`（title、what、why、relevance、try、effort、tags），顶层 `en` 是 summary、deep_dive（title、body；没有展开写就填空字符串）、try_this、skip、watch_next 的英文版。英文要自然、简洁，意思和中文一致，不是逐字翻译；专名保留原文。
 - 不写读者的姓名、单位、合作者、邮箱或任何账号信息。
 
 ## 读者反馈

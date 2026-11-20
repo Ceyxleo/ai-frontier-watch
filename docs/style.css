@@ -131,6 +131,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   flex: none; font-size: 12px; padding: 3px 10px; border-radius: 999px;
   border: 1px solid var(--hair); color: var(--ink-2); background: var(--surface);
 }
+.top-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+.badge.lang { cursor: pointer; font-weight: 600; min-width: 36px; }
+.badge.lang:hover { border-color: var(--axis); color: var(--ink); }
 .badge.rw { color: var(--good); border-color: color-mix(in srgb, var(--good) 40%, transparent); background: var(--good-wash); }
 .badge.warn { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 40%, transparent); background: var(--bad-wash); }
 

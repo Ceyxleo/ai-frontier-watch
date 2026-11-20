@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.github.com; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="no-referrer">
-  <title>AI 前沿周报</title>
+  <title>AI 前沿周报 · AI Frontier Weekly</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,19 +15,22 @@
       <div class="brand">
         <span class="brand-mark" aria-hidden="true"></span>
         <div>
-          <h1>AI 前沿周报</h1>
-          <p class="brand-sub">每周一更新 · 打勾、记录、沉淀成知识</p>
+          <h1 data-i18n="title">AI 前沿周报</h1>
+          <p class="brand-sub" data-i18n="brandSub">每周一更新 · 打勾、记录、沉淀成知识</p>
         </div>
       </div>
-      <span id="mode-badge" class="badge" title="">只读</span>
+      <div class="top-actions">
+        <button id="lang-toggle" class="badge lang" type="button">EN</button>
+        <span id="mode-badge" class="badge" title="">只读</span>
+      </div>
     </div>
-    <nav class="tabs" role="tablist" aria-label="页面">
-      <a role="tab" href="#week" data-tab="week">本周</a>
-      <a role="tab" href="#archive" data-tab="archive">往期</a>
-      <a role="tab" href="#learn" data-tab="learn">学习记录</a>
-      <a role="tab" href="#knowledge" data-tab="knowledge">知识库</a>
-      <a role="tab" href="#growth" data-tab="growth">成长</a>
-      <a role="tab" href="#settings" data-tab="settings">设置</a>
+    <nav class="tabs" role="tablist" aria-label="Tabs">
+      <a role="tab" href="#week" data-tab="week" data-i18n="tabs.week">本周</a>
+      <a role="tab" href="#archive" data-tab="archive" data-i18n="tabs.archive">往期</a>
+      <a role="tab" href="#learn" data-tab="learn" data-i18n="tabs.learn">学习记录</a>
+      <a role="tab" href="#knowledge" data-tab="knowledge" data-i18n="tabs.knowledge">知识库</a>
+      <a role="tab" href="#growth" data-tab="growth" data-i18n="tabs.growth">成长</a>
+      <a role="tab" href="#settings" data-tab="settings" data-i18n="tabs.settings">设置</a>
     </nav>
   </header>
 
@@ -43,9 +46,10 @@
   </main>
 
   <footer class="footer">
-    <p>内容由 AI agent 每周自动检索和整理，每条都附原始链接，并标明是否读了原文。请以原文为准。</p>
+    <p data-i18n="footer">内容由 AI agent 每周自动检索和整理，每条都附原始链接，并标明是否读了原文。请以原文为准。</p>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="core.js"></script>
   <script src="charts.js"></script>
   <script src="views-week.js"></script>

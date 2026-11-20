@@ -276,12 +276,21 @@ WEEK_SCHEMA = _obj({
         "evidence": {"type": "string", "enum": ["primary", "secondary"]},
         "date_published": _S,
         "tags": {"type": "array", "items": _S},
+        "en": _obj({"title": _S, "what": _S, "why": _S, "relevance": _S, "try": _S, "effort": _S,
+                    "tags": {"type": "array", "items": _S}}),
     })},
     "deep_dive": _obj({"source_item_id": _S, "title": _S, "body": _S, "links": _LINKS}),
     "try_this": {"type": "array", "items": _obj({"title": _S, "steps": _S, "cost": _S})},
     "skip": {"type": "array", "items": _obj({"title": _S, "reason": _S})},
     "watch_next": {"type": "array", "items": _S},
     "preferences_learned": _S,
+    "en": _obj({
+        "summary": {"type": "array", "items": _S},
+        "deep_dive": _obj({"title": _S, "body": _S}),
+        "try_this": {"type": "array", "items": _obj({"title": _S, "steps": _S, "cost": _S})},
+        "skip": {"type": "array", "items": _obj({"title": _S, "reason": _S})},
+        "watch_next": {"type": "array", "items": _S},
+    }),
 })
 
 CARDS_SCHEMA = _obj({
@@ -292,6 +301,8 @@ CARDS_SCHEMA = _obj({
         "next_steps": {"type": "array", "items": _S},
         "links": _LINKS,
         "source_learning_ids": {"type": "array", "items": _S},
+        "en": _obj({"topic": _S, "title": _S, "summary": _S, "key_points": {"type": "array", "items": _S},
+                    "related_research": _S, "next_steps": {"type": "array", "items": _S}}),
     })},
 })
 
@@ -378,6 +389,31 @@ def _item_id(date: str, url: str) -> str:
     return f"{date}-{hashlib.sha1(norm_url(url).encode()).hexdigest()[:6]}"
 
 
+def _item_en(e: dict) -> dict:
+    return {"title": _s(e.get("title"), 160), "what": _s(e.get("what"), 700), "why": _s(e.get("why"), 400),
+            "relevance": _s(e.get("relevance"), 400), "try": _s(e.get("try"), 400), "effort": _s(e.get("effort"), 100),
+            "tags": [_s(t, 30) for t in (e.get("tags") or [])][:4]}
+
+
+def _week_en(e: dict, has_deep: bool) -> dict:
+    dd = e.get("deep_dive") or {}
+    return {
+        "summary": [_s(x, 200) for x in e.get("summary", [])][:3],
+        "deep_dive": {"title": _s(dd.get("title"), 160), "body": _s(dd.get("body"), 7000)} if has_deep else None,
+        "try_this": [{"title": _s(t.get("title"), 120), "steps": _s(t.get("steps"), 600), "cost": _s(t.get("cost"), 100)}
+                     for t in e.get("try_this", [])][:2],
+        "skip": [{"title": _s(t.get("title"), 120), "reason": _s(t.get("reason"), 300)} for t in e.get("skip", [])][:3],
+        "watch_next": [_s(x, 200) for x in e.get("watch_next", [])][:3],
+    }
+
+
+def _card_en(e: dict) -> dict:
+    return {"topic": _s(e.get("topic"), 40), "title": _s(e.get("title"), 160), "summary": _s(e.get("summary"), 700),
+            "key_points": [_s(p, 300) for p in e.get("key_points", [])][:5],
+            "related_research": _s(e.get("related_research"), 400),
+            "next_steps": [_s(p, 300) for p in e.get("next_steps", [])][:3]}
+
+
 def finalize_week(raw: dict, date: str, window: dict, seen: list[str], deep: dict | None, models: list[str]) -> dict:
     seen_set = set(seen)
     items, used = [], set()
@@ -398,6 +434,7 @@ def finalize_week(raw: dict, date: str, window: dict, seen: list[str], deep: dic
             "links": links, "evidence": "primary" if it.get("evidence") == "primary" else "secondary",
             "date_published": pub if re.fullmatch(r"\d{4}-\d{2}-\d{2}", pub) else "",
             "tags": [_s(t, 20) for t in (it.get("tags") or [])][:4],
+            "en": _item_en(it.get("en") or {}),
         })
         if len(items) >= CFG["items_max"]:
             break
@@ -420,6 +457,7 @@ def finalize_week(raw: dict, date: str, window: dict, seen: list[str], deep: dic
         "skip": [{"title": _s(t.get("title"), 80), "reason": _s(t.get("reason"), 200)} for t in raw.get("skip", [])][:3],
         "watch_next": [_s(x, 150) for x in raw.get("watch_next", [])][:3],
         "preferences_learned": _s(raw.get("preferences_learned"), 300),
+        "en": _week_en(raw.get("en") or {}, bool(deep_dive)),
     }
     n = [0]
     week = redact(week, n, _denylist())
@@ -458,6 +496,7 @@ def finalize_cards(raw: dict, cands: list[dict], date: str) -> list[dict]:
             "next_steps": [_s(p, 200) for p in c.get("next_steps", [])][:3],
             "links": [l for l in clean_links(c.get("links"), 5) if norm_url(l["url"]) in allowed],
             "source_learning_ids": src,
+            "en": _card_en(c.get("en") or {}),
         })
     n = [0]
     out = redact(out, n, _denylist())
@@ -482,8 +521,8 @@ class Ctx:
             self._client = _client()
         return self._client
 
-    def notice(self, level: str, text: str) -> None:
-        self.index.setdefault("notices", []).append({"date": self.date, "level": level, "text": text[:300]})
+    def notice(self, level: str, text: str, text_en: str = "") -> None:
+        self.index.setdefault("notices", []).append({"date": self.date, "level": level, "text": text[:300], "text_en": text_en[:300]})
         self.index["notices"] = self.index["notices"][-10:]
 
     def upsert_week(self, entry: dict) -> None:
@@ -505,7 +544,8 @@ def run_distill(ctx: Ctx) -> bool:
         return True
     ok, spent = budget_ok(ctx.usage, ctx.date)
     if not ok:
-        ctx.notice("info", f"本月花费约 ${spent:.2f}，接近上限 ${CFG['monthly_cap_usd']}，知识整理推迟到下个月。")
+        ctx.notice("info", f"本月花费约 ${spent:.2f}，接近上限 ${CFG['monthly_cap_usd']}，知识整理推迟到下个月。",
+                   f"About ${spent:.2f} spent this month, near the ${CFG['monthly_cap_usd']} cap; distilling waits until next month.")
         print(f"distill: skipped, month spend ${spent:.2f}")
         return True
     meter = Meter()
@@ -531,7 +571,7 @@ def run_distill(ctx: Ctx) -> bool:
         return True
     except Exception as e:  # record and continue; the weekly report can still run
         ctx.usage["runs"].append(meter.record(ctx.date, "distill", "failed"))
-        ctx.notice("error", f"知识整理失败：{type(e).__name__}: {str(e)[:200]}")
+        ctx.notice("error", f"知识整理失败：{type(e).__name__}: {str(e)[:200]}", f"Distill failed: {type(e).__name__}: {str(e)[:200]}")
         print(f"distill: FAILED {type(e).__name__}: {str(e)[:200]}")
         return False
 
@@ -542,8 +582,9 @@ def run_weekly(ctx: Ctx, window_days: int, must_read: list[str]) -> bool:
     ok, spent = budget_ok(ctx.usage, ctx.date)
     if not ok:
         reason = f"本月花费约 ${spent:.2f}，再跑一期可能超过上限 ${CFG['monthly_cap_usd']}，这一期跳过。"
-        ctx.upsert_week({"date": ctx.date, "status": "skipped", "reason": reason})
-        ctx.notice("info", reason)
+        reason_en = f"About ${spent:.2f} spent this month; another issue could pass the ${CFG['monthly_cap_usd']} cap, so this one is skipped."
+        ctx.upsert_week({"date": ctx.date, "status": "skipped", "reason": reason, "reason_en": reason_en})
+        ctx.notice("info", reason, reason_en)
         print(f"weekly: skipped, month spend ${spent:.2f}")
         return True
     weeks = past_weeks(ctx.data, ctx.index, CFG["seen_lookback_weeks"])
@@ -576,7 +617,8 @@ def run_weekly(ctx: Ctx, window_days: int, must_read: list[str]) -> bool:
         rel = f"weeks/{ctx.date}.json"
         save_json(ctx.data / rel, week)
         ctx.upsert_week({"date": ctx.date, "file": rel, "status": "ok", "n_items": len(week["items"]),
-                         "headline": (week["summary"] or [""])[0], "model": week["model"],
+                         "headline": (week["summary"] or [""])[0],
+                         "headline_en": ((week.get("en") or {}).get("summary") or [""])[0], "model": week["model"],
                          "generated_at": week["generated_at"]})
         ctx.index["notices"] = [n for n in ctx.index.get("notices", []) if n.get("date", "") > ctx.date]
         ctx.usage["runs"].append(meter.record(ctx.date, "weekly", "ok"))
@@ -586,8 +628,8 @@ def run_weekly(ctx: Ctx, window_days: int, must_read: list[str]) -> bool:
         ctx.usage["runs"].append(meter.record(ctx.date, "weekly", "failed"))
         msg = f"{type(e).__name__}: {str(e)[:200]}"
         if not any(w.get("date") == ctx.date and w.get("status") == "ok" for w in ctx.index.get("weeks", [])):
-            ctx.upsert_week({"date": ctx.date, "status": "failed", "reason": "生成失败：" + msg})
-        ctx.notice("error", f"{ctx.date} 这一期生成失败：{msg}")
+            ctx.upsert_week({"date": ctx.date, "status": "failed", "reason": "生成失败：" + msg, "reason_en": "Generation failed: " + msg})
+        ctx.notice("error", f"{ctx.date} 这一期生成失败：{msg}", f"The {ctx.date} issue failed: {msg}")
         print(f"weekly: FAILED {msg} (cost so far ${meter.cost:.2f})")
         return False
 

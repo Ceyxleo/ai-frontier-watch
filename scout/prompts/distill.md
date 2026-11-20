@@ -11,6 +11,7 @@
 - related_research：和哪类研究有关，用公开的研究方向来说。
 - next_steps：1–3 条下一步可以学或可以试的。
 - links：只用学习记录和周报条目里出现过的 https 链接。
+- en：topic、title、summary、key_points、related_research、next_steps 的英文版，自然简洁，意思一致。my_words 是研究者自己的话，不翻译。
 - 不写研究者的姓名、单位、合作者、邮箱或任何账号信息。不编造原文没有的数字。
 
 ## 已有主题

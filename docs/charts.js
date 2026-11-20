@@ -119,7 +119,8 @@
         g.append(el("text", { class: "val", x: xc(i), y: y(totals[i]) - 5, "text-anchor": "middle" }, fmt(totals[i])));
       }
       const hit = el("rect", { class: "hit", x: M.left + band * i, y: M.top, width: band, height: ih });
-      const lines = [r.label].concat(series.map(s => `${s.name}：${r.values[s.key] || 0}${unit || ""}`));
+      const sep = window.I18N && I18N.lang === "en" ? ": " : "：";
+      const lines = [r.label].concat(series.map(s => `${s.name}${sep}${r.values[s.key] || 0}${unit || ""}`));
       hit.addEventListener("mousemove", () => show(xc(i), y(totals[i] || 0), lines));
       hit.addEventListener("mouseleave", hide);
       g.append(hit);
@@ -138,7 +139,7 @@
   }
 
   /* rows: [{label, value}] cumulative step line */
-  function stepLine(container, { rows, ariaLabel, unit }) {
+  function stepLine(container, { rows, ariaLabel, unit, cumLabel }) {
     const { svg, show, hide } = frame(container, ariaLabel);
     const ticks = niceTicks(Math.max(1, ...rows.map(r => r.value)));
     const top = ticks[ticks.length - 1];
@@ -163,7 +164,7 @@
         const hit = el("rect", { class: "hit", x: x(i) - half, y: M.top, width: half * 2, height: ih });
         hit.addEventListener("mousemove", () => {
           marker.setAttribute("cx", x(i)); marker.setAttribute("cy", y(r.value)); marker.setAttribute("visibility", "visible");
-          show(x(i), y(r.value), [r.label, `累计 ${r.value}${unit || ""}`]);
+          show(x(i), y(r.value), [r.label, (cumLabel ? cumLabel(r.value) : String(r.value)) + (unit || "")]);
         });
         hit.addEventListener("mouseleave", () => { marker.setAttribute("visibility", "hidden"); hide(); });
         svg.append(hit);

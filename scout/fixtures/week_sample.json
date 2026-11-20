@@ -32,7 +32,18 @@
       "tags": [
         "multi-agent",
         "agent"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 1: Common multi-agent architectures",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: fits a day-to-day research-agent workflow.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "multi-agent"
+        ]
+      }
     },
     {
       "id": "2026-11-23-02",
@@ -54,7 +65,18 @@
       "tags": [
         "multi-agent",
         "agent"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 2: A new reasoning model",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: fits a day-to-day research-agent workflow.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "multi-agent"
+        ]
+      }
     },
     {
       "id": "2026-11-23-03",
@@ -76,7 +98,18 @@
       "tags": [
         "multi-agent",
         "agent"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 3: MCP adds long-running tasks",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: fits a day-to-day research-agent workflow.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "multi-agent"
+        ]
+      }
     },
     {
       "id": "2026-11-23-04",
@@ -98,7 +131,18 @@
       "tags": [
         "multi-agent",
         "agent"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 4: New agent benchmarks",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: fits a day-to-day research-agent workflow.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "multi-agent"
+        ]
+      }
     },
     {
       "id": "2026-11-23-05",
@@ -120,7 +164,19 @@
       "tags": [
         "水文",
         "emulator"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 5: Hybrid AI–NWP weather models",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: could inform the validation approach in river–lake coupled modeling.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "hydrology",
+          "emulator"
+        ]
+      }
     },
     {
       "id": "2026-11-23-06",
@@ -142,7 +198,19 @@
       "tags": [
         "水文",
         "emulator"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 6: Differentiable hydrology for global regionalization",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: could inform the validation approach in river–lake coupled modeling.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "hydrology",
+          "emulator"
+        ]
+      }
     },
     {
       "id": "2026-11-23-07",
@@ -164,7 +232,19 @@
       "tags": [
         "水文",
         "emulator"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 7: LLM-written reservoir rules",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: could inform the validation approach in river–lake coupled modeling.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "hydrology",
+          "emulator"
+        ]
+      }
     },
     {
       "id": "2026-11-23-08",
@@ -185,7 +265,18 @@
       "date_published": "2026-11-18",
       "tags": [
         "科研工作流"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 8: Coding agents editing Fortran models",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: fits a day-to-day research-agent workflow.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "research workflow"
+        ]
+      }
     },
     {
       "id": "2026-11-23-09",
@@ -206,7 +297,18 @@
       "date_published": "2026-11-10",
       "tags": [
         "科研工作流"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 9: Citation checks in reading agents",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: fits a day-to-day research-agent workflow.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "research workflow"
+        ]
+      }
     },
     {
       "id": "2026-11-23-10",
@@ -227,20 +329,21 @@
       "date_published": "2026-11-11",
       "tags": [
         "科研工作流"
-      ]
+      ],
+      "en": {
+        "title": "[Sample] Item 10: AI-scientist systems for data analysis",
+        "what": "A sample item to preview the layout. Real content is written by the weekly agent.",
+        "why": "Sample: one or two sentences on why it matters.",
+        "relevance": "Sample: fits a day-to-day research-agent workflow.",
+        "try": "Sample: read section 3 and run one small example locally.",
+        "effort": "about 30 min, free",
+        "tags": [
+          "research workflow"
+        ]
+      }
     }
   ],
   "deep_dive": null,
-  "try_this": [
-    {
-      "title": "【示例】试一个 orchestrator–worker 小例子",
-      "steps": "照原文的图搭一个两 agent 的流程，处理一篇文献。",
-      "cost": "约 1 小时",
-      "item_ids": [
-        "2026-11-23-01"
-      ]
-    }
-  ],
   "skip": [
     {
       "title": "【示例】某个只有宣传稿的发布",
@@ -250,5 +353,36 @@
   "watch_next": [
     "【示例】下期继续盯的一件事"
   ],
-  "preferences_learned": ""
+  "preferences_learned": "",
+  "en": {
+    "summary": [
+      "[Sample] First of three summary sentences.",
+      "[Sample] The most important development.",
+      "[Sample] The one closest to my research."
+    ],
+    "deep_dive": null,
+    "try_this": [
+      {
+        "title": "[Sample] Try a small orchestrator–worker setup",
+        "steps": "Follow the figure in the post and build a two-agent flow over one paper.",
+        "cost": "about 1 hour"
+      }
+    ],
+    "skip": [
+      {
+        "title": "[Sample] A launch with only a press release",
+        "reason": "No technical detail yet; wait for the paper."
+      }
+    ],
+    "watch_next": [
+      "[Sample] One thing to keep watching"
+    ]
+  },
+  "try_this": [
+    {
+      "title": "【示例】试一个 orchestrator–worker 小例子",
+      "steps": "照原文的图搭一个两 agent 的流程，处理一篇文献。",
+      "cost": "约 1 小时"
+    }
+  ]
 }

@@ -9,7 +9,8 @@
 - `scout/prompts/{research,compose,distill}.md`：三步的 prompt，占位符写成 `{{NAME}}`。
 - `scout/config.json`：模型、effort、搜索和抓取上限、每期条数、月度上限、标价。
 - `profile/interests.md`、`profile/sources.md`：兴趣画像和信息源。
-- `docs/`：GitHub Pages 网页，纯静态，没有构建步骤。脚本加载顺序：`core.js` → `charts.js` → `views-week.js` → `views-more.js` → `app.js`。
+- `docs/`：GitHub Pages 网页，纯静态，没有构建步骤。脚本加载顺序：`i18n.js` → `core.js` → `charts.js` → `views-week.js` → `views-more.js` → `app.js`。
+- 双语：界面文字都在 `docs/i18n.js` 的 zh / en 词典里，新增文字两边都要加。生成内容在数据里自带 `en` 对象（条目、周报顶层、知识卡片），网页用 `I18N.pick()` 选；英文缺失时回退到中文。学习记录不翻译。
 - `docs/data/`：数据。**每个文件只有一方写**：
   - 网页写：`state.json`（✓/✗/⭐ 和学习记录）；
   - Action 写：`weeks/*.json`、`index.json`、`knowledge/cards.json`、`usage.json`。

@@ -2,6 +2,7 @@
 (function () {
   "use strict";
   const { h } = window.AFW;
+  const t = (...a) => I18N.t(...a);
 
   const APP = window.APP = {
     index: { weeks: [], notices: [] },
@@ -39,7 +40,7 @@
 
   // Apply locally first (instant), then persist; on failure reload the truth.
   async function commit(mutator, message, okMsg) {
-    if (!AFW.hasToken()) { AFW.toast("只读模式：在「设置」里填 token 后才能操作", true); return; }
+    if (!AFW.hasToken()) { AFW.toast(t("toastRo"), true); return; }
     APP.state = AFW.normalizeState(mutator(JSON.parse(JSON.stringify(APP.state))) || APP.state);
     route(true);
     try {
@@ -47,7 +48,7 @@
       if (okMsg) AFW.toast(okMsg);
       route(true);
     } catch (e) {
-      AFW.toast("没保存上：" + e.message, true);
+      AFW.toast(t("notSaved", e.message), true);
       try { APP.state = (await AFW.getRemoteState()).state; } catch (_) { /* keep local */ }
       route(true);
     }
@@ -86,7 +87,7 @@
     commit(s => {
       if (!s.learning.some(l => l.item_id === item.id)) s.learning.push(entry);
       return s;
-    }, `learning: add ${item.id}`, "已加入学习清单");
+    }, `learning: add ${item.id}`, t("toastAdded"));
   };
 
   APP.saveLearning = function (id, data) {
@@ -101,11 +102,11 @@
       if (data.status && data.status !== "done") delete e.done_at;
       Object.assign(e, data, { updated: ts });
       return s;
-    }, id ? `learning: update ${id}` : "learning: add", id ? "已保存" : "已记下");
+    }, id ? `learning: update ${id}` : "learning: add", id ? t("toastSaved") : t("toastLogged"));
   };
 
   APP.deleteLearning = function (id) {
-    commit(s => { s.learning = s.learning.filter(l => l.id !== id); return s; }, `learning: delete ${id}`, "已删除");
+    commit(s => { s.learning = s.learning.filter(l => l.id !== id); return s; }, `learning: delete ${id}`, t("toastDeleted"));
   };
 
   /* ---------- theme ---------- */
@@ -118,9 +119,9 @@
   /* ---------- badge ---------- */
   function updateBadge() {
     const b = document.getElementById("mode-badge");
-    if (AFW.hasToken() && AFW.isTokenBad()) { b.textContent = "token 失效"; b.className = "badge warn"; b.title = "到「设置」换一个 token"; }
-    else if (AFW.hasToken()) { b.textContent = "可编辑"; b.className = "badge rw"; b.title = "这个浏览器可以打勾和记录"; }
-    else { b.textContent = "只读"; b.className = "badge"; b.title = "到「设置」填 token 后可以打勾和记录"; }
+    if (AFW.hasToken() && AFW.isTokenBad()) { b.textContent = t("badge.bad"); b.className = "badge warn"; b.title = t("badge.badTitle"); }
+    else if (AFW.hasToken()) { b.textContent = t("badge.rw"); b.className = "badge rw"; b.title = t("badge.rwTitle"); }
+    else { b.textContent = t("badge.ro"); b.className = "badge"; b.title = t("badge.roTitle"); }
   }
   document.addEventListener("afw:token-bad", updateBadge);
 
@@ -143,6 +144,9 @@
 
   /* ---------- init ---------- */
   APP.setTheme(AFW.store.get("theme") || "auto");
-  document.getElementById("view-week").append(h("p", { class: "muted", text: "加载中…" }));
+  I18N.applyStatic();
+  document.getElementById("lang-toggle").addEventListener("click", () => I18N.setLang(I18N.lang === "zh" ? "en" : "zh"));
+  document.addEventListener("afw:lang", () => { updateBadge(); route(true); });
+  document.getElementById("view-week").append(h("p", { class: "muted", text: t("loading") }));
   APP.reload();
 })();

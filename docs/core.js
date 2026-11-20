@@ -11,13 +11,9 @@
     dataDir: "docs/data",
   };
 
-  const AREAS = [
-    { key: "frontier", name: "前沿模型和 agent" },
-    { key: "earth", name: "AI for 地球系统和水文" },
-    { key: "workflow", name: "AI 科研工作流" },
-    { key: "other", name: "其他" },
-  ];
-  const areaName = k => (AREAS.find(a => a.key === k) || AREAS[3]).name;
+  const t = (...a) => I18N.t(...a);
+  const AREAS = ["frontier", "earth", "workflow", "other"].map(key => ({ key, get name() { return t("areas." + key); } }));
+  const areaName = k => t("areas." + (AREAS.some(a => a.key === k) ? k : "other"));
 
   /* ---------- DOM ---------- */
   function safeUrl(s) {
@@ -120,12 +116,12 @@
     token = candidate;
     try {
       const [u, r] = await Promise.all([gh("/user"), gh(`/repos/${CFG.owner}/${CFG.repo}`)]);
-      if (u.status === 401 || r.status === 401) return { ok: false, why: "token 无效或已过期" };
-      if (!r.ok) return { ok: false, why: `读不到仓库（HTTP ${r.status}），检查 token 是否选了这个仓库` };
+      if (u.status === 401 || r.status === 401) return { ok: false, why: t("eBadToken") };
+      if (!r.ok) return { ok: false, why: t("eNoRepo", r.status) };
       const user = await u.json().catch(() => null);
       const repo = await r.json();
       const canPush = repo.permissions ? !!repo.permissions.push : null;
-      if (canPush === false) return { ok: false, why: "token 没有这个仓库的写权限（Contents: Read and write）" };
+      if (canPush === false) return { ok: false, why: t("eNoPush") };
       if (user && user.id) identity = { login: user.login, id: user.id, noreply: `${user.id}+${user.login}@users.noreply.github.com` };
       return { ok: true, login: user ? user.login : "" };
     } finally {
@@ -172,8 +168,8 @@
   async function getRemoteState() {
     const res = await gh(contentsPath("state.json") + `?ref=${CFG.branch}`);
     if (res.status === 404) return { state: emptyState(), sha: null };
-    if (res.status === 401) { markTokenBad(); throw new Error("token 无效或已过期"); }
-    if (!res.ok) throw new Error("读取 state.json 失败（HTTP " + res.status + "）");
+    if (res.status === 401) { markTokenBad(); throw new Error(t("eBadToken")); }
+    if (!res.ok) throw new Error(t("eRead", res.status));
     const j = await res.json();
     return { state: normalizeState(JSON.parse(b64decode(j.content))), sha: j.sha };
   }
@@ -188,7 +184,7 @@
   let queue = Promise.resolve();
   function updateState(mutator, message) {
     const job = queue.then(async () => {
-      if (!token) throw new Error("只读模式：先在设置里填 token");
+      if (!token) throw new Error(t("eRo"));
       const who = await ensureIdentity();
       for (let attempt = 0; attempt < 4; attempt++) {
         const { state, sha } = await getRemoteState();
@@ -203,11 +199,11 @@
         const res = await gh(contentsPath("state.json"), { method: "PUT", body: JSON.stringify(body), headers: { "Content-Type": "application/json" } });
         if (res.ok) return next;
         if (res.status === 409 || res.status === 422) { await new Promise(r => setTimeout(r, 400 * (attempt + 1))); continue; }
-        if (res.status === 401) { markTokenBad(); throw new Error("token 无效或已过期"); }
-        if (res.status === 403 || res.status === 404) throw new Error("没有写权限（HTTP " + res.status + "）");
-        throw new Error("保存失败（HTTP " + res.status + "）");
+        if (res.status === 401) { markTokenBad(); throw new Error(t("eBadToken")); }
+        if (res.status === 403 || res.status === 404) throw new Error(t("eForbidden", res.status));
+        throw new Error(t("eSave", res.status));
       }
-      throw new Error("保存冲突，重试几次都没成功，请刷新后再试");
+      throw new Error(t("eConflict"));
     });
     queue = job.catch(() => {});
     return job;
