@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T00:41:06-06:00",
+  "updated": "2026-11-23T19:18:57-06:00",
   "weeks": [
     {
       "date": "2026-11-20",
@@ -10,6 +10,16 @@
       "headline_en": "Claude Fable 5.2 and GPT-6.2 landed the same month; most numbers are self-reported, so test on your own tasks.",
       "model": "claude-opus-5-5",
       "generated_at": "2026-11-20T06:41:06+00:00"
+    },
+    {
+      "date": "2026-11-23",
+      "file": "weeks/2026-11-23.json",
+      "status": "ok",
+      "n_items": 10,
+      "headline": "Agent 做科研的焦点正转向“结论能否核查”：执行代码审计比只读文字可靠。",
+      "headline_en": "Agent-driven research is shifting to verifiability: running the code beats reading the text.",
+      "model": "claude-opus-5-5",
+      "generated_at": "2026-11-24T01:18:57+00:00"
     }
   ],
   "notices": []

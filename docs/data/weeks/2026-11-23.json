@@ -1,0 +1,468 @@
+{
+  "date": "2026-11-23",
+  "window": {
+    "from": "2026-11-16",
+    "to": "2026-11-23"
+  },
+  "generated_at": "2026-11-24T01:18:57+00:00",
+  "model": "claude-opus-5-5",
+  "summary": [
+    "Agent 做科研的焦点正转向“结论能否核查”：执行代码审计比只读文字可靠。",
+    "ECMWF Forecast-in-a-Box 让 AI 天气模型可以在本地运行，并支持插件扩展。",
+    "Coding agent 开始接手 PR 审批和远程执行，agent 框架也成了供应链攻击的目标。"
+  ],
+  "items": [
+    {
+      "id": "2026-11-23-54a0be",
+      "area": "earth",
+      "title": "Forecast-in-a-Box：在本地机器上运行 ECMWF AI 天气预报",
+      "what": "ECMWF 联合挪威、马拉维气象部门试点的开源软件包，可以在自有设备上运行预训练 AI 天气模型，包括笔记本可跑的轻量模型和业务模型。系统基于 Anemoi 和 Earthkit，支持插件接入自定义模型和后处理。",
+      "why": "AI 天气预报开始从中心发布产品转向用户自己部署，而且全部开源。",
+      "relevance": "AI 天气预报作为河流和湖泊模型的驱动场；水文后处理 emulator 部署",
+      "try": "在笔记本上跑一个轻量模型，检查降水和气温输出能否直接转成水文模型的强迫场。",
+      "effort": "约半天，免费",
+      "links": [
+        {
+          "title": "ECMWF: Forecast-in-a-Box",
+          "url": "https://www.ecmwf.int/en/about/media-centre/news/2026/forecast-box-piloting-portable-solution-running-ai-weather-forecasts"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-19",
+      "tags": [
+        "AI天气预报",
+        "Anemoi",
+        "开源",
+        "本地部署"
+      ],
+      "en": {
+        "title": "Forecast-in-a-Box: ECMWF AI weather forecasts on your own machine",
+        "what": "An open-source package piloted by ECMWF with the Norwegian and Malawian met services that runs pretrained AI weather models locally, from laptop-sized models to operational ones. It is built on Anemoi and Earthkit, and plugins let users add their own models and post-processing.",
+        "why": "AI forecasting is moving from centre-issued products to user-run deployments, and the whole stack is open.",
+        "relevance": "AI weather forecasts as forcing for river and lake models; deploying hydrologic post-processing emulators",
+        "try": "Run a lightweight model on a laptop and check whether its precipitation and temperature output converts directly into hydrologic model forcing.",
+        "effort": "About half a day, free",
+        "tags": [
+          "AI weather",
+          "Anemoi",
+          "open source",
+          "local deployment"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-23-af41ee",
+      "area": "workflow",
+      "title": "HydroMind：结论可核查的自主水文研究 agent",
+      "what": "论文比较了三种 coding agent harness：原生 harness、加上固定命令运行模型并保存配置和预测的工具、再加上先写研究设计并记录每次改动的研究流程，评估 agent 的水文建模结论是否有自身数据和代码支撑。摘要中未见具体结果数字。",
+      "why": "它关注的是 agent 的说法能否被核查，而不只是 agent 能不能写代码。",
+      "relevance": "科研 agent 工作流；水文模型参数实验的可复现性",
+      "try": "读方法部分的三种 harness 定义，把“固定命令、保存记录、先写设计”写成 agent 规则文件。",
+      "effort": "约 1 小时，免费",
+      "links": [
+        {
+          "title": "arXiv: HydroMind",
+          "url": "https://arxiv.org/abs/2611.23323"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-15",
+      "tags": [
+        "科研agent",
+        "水文",
+        "可核查性"
+      ],
+      "en": {
+        "title": "HydroMind: an autonomous hydrology research agent with verifiable claims",
+        "what": "The paper compares three coding-agent harnesses: native, native plus tools that run models with fixed commands and save configs and predictions, and a further layer that requires a research design up front and logs every change. It assesses whether the agent's hydrologic modelling claims are backed by its own data and code. No result numbers appear in the abstract.",
+        "why": "It asks whether an agent's claims can be checked, not just whether the agent can code.",
+        "relevance": "Research agent workflows; reproducibility of hydrologic model parameter experiments",
+        "try": "Read the three harness definitions and turn 'fixed commands, saved artifacts, design first' into rules in your agent config file.",
+        "effort": "About 1 hour, free",
+        "tags": [
+          "research agents",
+          "hydrology",
+          "verifiability"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-23-ff4e1d",
+      "area": "workflow",
+      "title": "Society of AI Scientists：936 个 agent 写预印本，执行审计推翻近半结论",
+      "what": "据 CASRAI 报道，35 个实验室部署的 936 个 agent 自主写出 936 篇预印本，并自建了期刊 JAR。只读文本的审稿误判很多，而执行代码的审计推翻了 156 篇被质疑论文中 77 篇的核心结论，还发现 3 篇存在测试答案泄露。",
+      "why": "这是规模最大的 AI scientist 实地实验，结论是审查 agent 产出必须执行代码，不能只读文字。",
+      "relevance": "多 agent 科研工作流；自动化审稿与结果审计",
+      "try": "在自己的 agent 流程里加一个审计 agent，让它拿数据重跑分析脚本，而不是只审读文字。",
+      "effort": "读相关章节约 1–2 小时，免费",
+      "links": [
+        {
+          "title": "CASRAI 报道",
+          "url": "https://casrai.org/news/alphaxiv-agent-936-ai-generated-preprints-12-weeks-2026"
+        },
+        {
+          "title": "论文页",
+          "url": "https://www.alphaxiv.org/abs/2611.society-ai-scientists"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-19",
+      "tags": [
+        "AI scientist",
+        "审计",
+        "多agent"
+      ],
+      "en": {
+        "title": "Society of AI Scientists: 936 agents, and code audits overturn nearly half the challenged claims",
+        "what": "According to CASRAI, 936 agents across 35 labs autonomously wrote 936 preprints and set up their own journal, JAR. Text-only review made many misjudgements, while code-executing audits overturned the core findings of 77 of 156 challenged papers and caught 3 papers leaking test answers into training code.",
+        "why": "It is the largest field experiment of AI scientists so far, and it shows agent output has to be audited by running code, not by reading text.",
+        "relevance": "Multi-agent research workflows; automated review and result auditing",
+        "try": "Add an auditor agent to your pipeline that reruns the analysis scripts on the data instead of only reviewing the write-up.",
+        "effort": "About 1–2 hours for the relevant sections, free",
+        "tags": [
+          "AI scientist",
+          "auditing",
+          "multi-agent"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-23-299d37",
+      "area": "workflow",
+      "title": "Codex CLI 0.171.0：新增 exec --remote，可查看子 agent 记录",
+      "what": "新增 codex exec --remote，可以在已有的 app server 上启动或恢复非交互会话。默认模型改为 GPT-6.2 Sol，TUI 可查看子 agent 运行记录，同时修复了企业 MCP 登录问题。",
+      "why": "适合让 agent 常驻在一台远程机器上、从本地派发批处理任务。",
+      "relevance": "Coding agent 工具链；HPC 或工作站上的远程批处理",
+      "try": "在工作站上常驻一个 app server，从本地用 exec --remote 派发一个非交互任务。",
+      "effort": "约 1 小时，需 API 费用",
+      "links": [
+        {
+          "title": "Releasebot: Codex release notes",
+          "url": "https://releasebot.io/updates/openai/codex"
+        },
+        {
+          "title": "GitHub releases",
+          "url": "https://github.com/openai/codex/releases"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-20",
+      "tags": [
+        "Codex",
+        "CLI",
+        "远程执行"
+      ],
+      "en": {
+        "title": "Codex CLI 0.171.0: exec --remote and sub-agent transcripts",
+        "what": "Adds codex exec --remote to start or resume non-interactive sessions on an existing app server. The default model is now GPT-6.2 Sol, the TUI shows sub-agent transcripts, and an enterprise MCP login bug is fixed.",
+        "why": "It fits a setup where an agent lives on a remote machine and you dispatch batch jobs from your laptop.",
+        "relevance": "Coding agent tooling; remote batch work on HPC or workstations",
+        "try": "Keep an app server running on a workstation and dispatch one non-interactive job to it with exec --remote.",
+        "effort": "About 1 hour, API costs apply",
+        "tags": [
+          "Codex",
+          "CLI",
+          "remote execution"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-23-51bc17",
+      "area": "workflow",
+      "title": "Claude Ship：负责审查、修复和批准 PR 的 agent",
+      "what": "据媒体报道，Anthropic 推出三个 GitHub agent：Code Review、PR Steward 和 Claude Approvals。Claude Approvals 按仓库里 .claude/approvals.yml 的策略自动批准常规 PR；在 Claude Code 里运行 /ship 可以推送改动、开 PR 并处理反馈和失败的检查。",
+      "why": "Coding agent 开始接手批准合并这一步，审批策略写在仓库文件里。",
+      "relevance": "科研代码库的协作流程；agent 权限分级",
+      "try": "先在个人科研仓库里只试本地 /ship，暂不开启自动批准。",
+      "effort": "约 30 分钟；据报道面向 Team/Enterprise 版",
+      "links": [
+        {
+          "title": "The New Stack",
+          "url": "https://thenewstack.io/anthropic-claude-ship-approvals/"
+        },
+        {
+          "title": "MarkTechPost",
+          "url": "https://www.marktechpost.com/2026/11/23/anthropic-claude-ship-pull-request-agents/"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "",
+      "tags": [
+        "Claude Code",
+        "PR审批",
+        "GitHub"
+      ],
+      "en": {
+        "title": "Claude Ship: agents that review, fix and approve PRs",
+        "what": "According to media reports, Anthropic launched three GitHub agents: Code Review, PR Steward and Claude Approvals. Claude Approvals auto-approves routine PRs based on a policy in .claude/approvals.yml, and running /ship in Claude Code pushes changes, opens a PR and handles feedback and failing checks.",
+        "why": "Coding agents are starting to handle merge approval, with the approval policy stored in the repo.",
+        "relevance": "Collaboration workflows for research code; tiered agent permissions",
+        "try": "Try local /ship on a personal research repo first, without enabling auto-approval.",
+        "effort": "About 30 minutes; reportedly for Team/Enterprise plans",
+        "tags": [
+          "Claude Code",
+          "PR approval",
+          "GitHub"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-23-a9405a",
+      "area": "frontier",
+      "title": "Microsoft Agent Framework 的 PyPI 包被投毒",
+      "what": "agent-framework 1.26.1 和 1.26.2 在 33 分钟内连续发布，通过 .pth 文件在每次 Python 启动时窃取 Azure 和 GitHub Actions 的 token。最后一个干净版本是 1.26.0。原文给出了排查命令和需要轮换的凭据清单。",
+      "why": "让 agent 自己 pip install 的工作流对这类攻击几乎没有防御。",
+      "relevance": "Agent 工具链安全；科研计算环境的依赖管理",
+      "try": "用原文给出的 find 命令扫描自己的 Python 环境，并给 agent 用的环境锁定精确版本。",
+      "effort": "约 15 分钟，免费",
+      "links": [
+        {
+          "title": "Endor Labs 分析",
+          "url": "https://www.endorlabs.com/learn/agent-framework-compromised-software-supply-chain-attack"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-17",
+      "tags": [
+        "供应链安全",
+        "PyPI",
+        "agent"
+      ],
+      "en": {
+        "title": "Microsoft Agent Framework PyPI package compromised",
+        "what": "agent-framework 1.26.1 and 1.26.2 were published within 33 minutes and used a .pth file to steal Azure and GitHub Actions tokens on every Python startup. The last clean version is 1.26.0. The write-up includes detection commands and a list of credentials to rotate.",
+        "why": "Workflows that let agents pip install on their own have almost no defence against this kind of attack.",
+        "relevance": "Agent tooling security; dependency management in research computing environments",
+        "try": "Scan your Python environments with the article's find commands and pin exact versions in agent environments.",
+        "effort": "About 15 minutes, free",
+        "tags": [
+          "supply chain",
+          "PyPI",
+          "agents"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-23-b8e183",
+      "area": "frontier",
+      "title": "有人声称借助 Claude 证明黎曼猜想，尚待核实",
+      "what": "Anthropic 数学家 Levent Alpöge 宣布与 Claude 一起证明了黎曼猜想，并发布了 Lean 形式化代码。各媒体对独立验证状态的说法互相矛盾。",
+      "why": "如果成立，这是 LLM 生成、形式化系统检验这一范式的重大突破；但目前仍是声称。",
+      "relevance": "LLM 加形式化验证的可核查科研范式",
+      "try": "读 Simon Willison 的汇总，对比各来源对验证状态的说法。",
+      "effort": "约 20 分钟，免费",
+      "links": [
+        {
+          "title": "Simon Willison",
+          "url": "https://simonwillison.net/2026/Nov/20/levent-alpoge"
+        },
+        {
+          "title": "Nature",
+          "url": "https://www.nature.com/articles/d41586-026-03812-7"
+        },
+        {
+          "title": "Scientific American",
+          "url": "https://www.scientificamerican.com/article/anthropic-mathematician-claims-to-prove-riemann-hypothesis-most-famous-problem-in-all-of-math/"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-20",
+      "tags": [
+        "数学",
+        "Lean",
+        "待核实"
+      ],
+      "en": {
+        "title": "Claimed Riemann Hypothesis proof with Claude, unverified",
+        "what": "Anthropic mathematician Levent Alpöge announced a proof of the Riemann Hypothesis developed with Claude and released Lean formalization code. Outlets give conflicting accounts of whether it has been independently verified.",
+        "why": "If it holds, it is a major result for the LLM-generates, formal-system-checks paradigm; for now it is a claim.",
+        "relevance": "Verifiable research workflows combining LLMs with formal verification",
+        "try": "Read Simon Willison's roundup and compare how each source describes the verification status.",
+        "effort": "About 20 minutes, free",
+        "tags": [
+          "mathematics",
+          "Lean",
+          "unverified"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-23-b1e1a6",
+      "area": "earth",
+      "title": "Lerat：给概念水文模型直接推导解析梯度",
+      "what": "对由 ODE 概念水库串联组成的水文模型，给出基于分段线性系统和 Jacobian 的解析梯度计算方法，在 1–20 个子流域的半分布式模型上测试。据摘要，梯度与有限差分结果在机器精度上一致，速度快几个数量级。",
+      "why": "这是不依赖深度学习框架自动微分、透明度更高的可微分水文路线。",
+      "relevance": "可微分水文模型；参数率定和变分同化",
+      "try": "读方法部分，判断分段线性 ODE 的假设是否适用于你使用的汇流方程。",
+      "effort": "约 2 小时，免费",
+      "links": [
+        {
+          "title": "SSRN 论文",
+          "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7717098"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-20",
+      "tags": [
+        "可微分水文",
+        "梯度",
+        "率定"
+      ],
+      "en": {
+        "title": "Lerat: analytical gradients for conceptual hydrologic models",
+        "what": "Derives analytical gradients via piecewise-linear systems and Jacobians for hydrologic models built from chains of ODE conceptual stores, tested on semi-distributed models with 1–20 subcatchments. Per the abstract, the gradients match finite differences to machine precision and run orders of magnitude faster.",
+        "why": "It is a more transparent route to differentiable hydrology that does not depend on deep learning autodiff.",
+        "relevance": "Differentiable hydrology; parameter calibration and variational data assimilation",
+        "try": "Read the methods section and check whether the piecewise-linear ODE assumptions fit the routing equations you use.",
+        "effort": "About 2 hours, free",
+        "tags": [
+          "differentiable hydrology",
+          "gradients",
+          "calibration"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-23-2e247b",
+      "area": "earth",
+      "title": "混合深度学习径流模型：历史期表现好，不代表长期投影稳健",
+      "what": "在土耳其半干旱流域比较 WT–DNN 和 CNN–LSTM–Attention，并加入 GAN 增广，做 2021–2098 年 RCP 月径流投影，与 SWAT 对比。GAN 让测试期 RMSE 降低 34–73%，但各模型的长期相对优劣会变化，历史指标与长期一致性没有显著关联。",
+      "why": "这是负面但有用的证据：历史期指标不能代表 ML 在气候外推下的可信度。",
+      "relevance": "ML 水文 emulator 在气候情景下的外推检验",
+      "try": "读摘要和结论，检查自己的 emulator 评估里有没有单独的外推检验。",
+      "effort": "约 15 分钟，免费",
+      "links": [
+        {
+          "title": "MDPI Hydrology",
+          "url": "https://www.mdpi.com/2306-5338/13/11/307"
+        }
+      ],
+      "evidence": "primary",
+      "date_published": "2026-11-17",
+      "tags": [
+        "径流",
+        "气候外推",
+        "深度学习"
+      ],
+      "en": {
+        "title": "Hybrid DL runoff models: good historical skill doesn't mean robust projections",
+        "what": "Compares WT–DNN and CNN–LSTM–Attention, with GAN augmentation, in a semi-arid Turkish basin, running 2021–2098 RCP monthly runoff projections against SWAT. GAN cuts test-period RMSE by 34–73%, but the models' relative ranking shifts over the long term, and historical metrics show no significant link to long-term agreement.",
+        "why": "Negative but useful evidence: historical metrics don't tell you how trustworthy ML is under climate extrapolation.",
+        "relevance": "Extrapolation testing of ML hydrologic emulators under climate scenarios",
+        "try": "Read the abstract and conclusions, then check whether your emulator evaluation includes a dedicated extrapolation test.",
+        "effort": "About 15 minutes, free",
+        "tags": [
+          "runoff",
+          "climate extrapolation",
+          "deep learning"
+        ]
+      }
+    },
+    {
+      "id": "2026-11-23-18347a",
+      "area": "earth",
+      "title": "DeepONet 海岸含水层地下水与溶质运移代理模型（代码开源）",
+      "what": "在 SUTRA 模拟的理想化二维海岸含水层上训练参数化 DeepONet，把潮汐振幅和陆侧水头映射为随时间变化的压力水头场和浓度场。作者指出，物理正则化的效果取决于训练数据对强迫空间的覆盖程度。",
+      "why": "开源的算子学习地下水 emulator，可以当作耦合模型的小型模板。",
+      "relevance": "地下水 emulator；河流与地下水交换的代理建模",
+      "try": "clone 仓库，研究其“边界强迫 → 场”的输入输出接口设计。",
+      "effort": "约 2–3 小时，免费",
+      "links": [
+        {
+          "title": "MDPI Water 论文",
+          "url": "https://www.mdpi.com/2073-4441/18/23/2921"
+        },
+        {
+          "title": "GitHub 代码",
+          "url": "https://github.com/yfz100/SUTRA_DeepONet"
+        }
+      ],
+      "evidence": "secondary",
+      "date_published": "2026-11-23",
+      "tags": [
+        "DeepONet",
+        "地下水",
+        "emulator",
+        "开源"
+      ],
+      "en": {
+        "title": "DeepONet surrogate for tidal coastal aquifer flow and transport (open code)",
+        "what": "Trains a parametric DeepONet on an idealized 2D coastal aquifer simulated with SUTRA, mapping tidal amplitude and inland head to time-varying pressure head and concentration fields. The authors note that the benefit of physics regularization depends on how well the training data cover the forcing space.",
+        "why": "An open operator-learning groundwater emulator that works as a small template for coupled models.",
+        "relevance": "Groundwater emulators; surrogate modelling of river–groundwater exchange",
+        "try": "Clone the repo and study its boundary-forcing-to-field input/output interface.",
+        "effort": "About 2–3 hours, free",
+        "tags": [
+          "DeepONet",
+          "groundwater",
+          "emulator",
+          "open source"
+        ]
+      }
+    }
+  ],
+  "deep_dive": null,
+  "try_this": [
+    {
+      "title": "给 agent 的 Python 环境做一次安全检查",
+      "steps": "1) 按 Endor Labs 原文的 find/grep 命令扫描常用的 conda 和 pip 环境，查找可疑的 .pth 文件和 agent-framework 1.26.1/1.26.2；2) 把 agent 用的环境依赖锁定到精确版本；3) 不让 agent 在装有凭据的环境里自行装包。",
+      "cost": "约 15–30 分钟，免费"
+    },
+    {
+      "title": "把 HydroMind 式的可核查规则写进 agent 配置",
+      "steps": "1) 用固定命令脚本运行模型，配置、模型和预测都保存到带时间戳的目录；2) 在规则文件里要求 agent 先写研究设计再跑实验，并把每次改动记录到日志；3) 加一个审计步骤，用保存的数据重跑分析脚本，核对结论。",
+      "cost": "约 1–2 小时，免费"
+    }
+  ],
+  "skip": [
+    {
+      "title": "Gemini 4 Neon 发布",
+      "reason": "只有第三方追踪站的信息，没有官方技术报告和 benchmark，暂不下能力结论。"
+    },
+    {
+      "title": "Google Weather Lab 气旋模型报道",
+      "reason": "来源质量低，日期存疑，可能是 2025 年旧闻的重写。"
+    }
+  ],
+  "watch_next": [
+    "Society of AI Scientists 论文全文，以及 HydroMind 的结果数字和代码是否开源",
+    "Claude Ship 官方文档（发布日期、套餐），以及 Lean/Mathlib 社区对黎曼证明的正式结论",
+    "Forecast-in-a-Box 第二个稳定版的发布和安装文档"
+  ],
+  "preferences_learned": "",
+  "en": {
+    "summary": [
+      "Agent-driven research is shifting to verifiability: running the code beats reading the text.",
+      "ECMWF's Forecast-in-a-Box lets users run AI weather models locally and extend them with plugins.",
+      "Coding agents now handle PR approval and remote runs, and agent frameworks have become supply-chain targets."
+    ],
+    "deep_dive": null,
+    "try_this": [
+      {
+        "title": "Security-check your agents' Python environments",
+        "steps": "1) Use the find/grep commands from the Endor Labs write-up to scan your main conda and pip environments for suspicious .pth files and agent-framework 1.26.1/1.26.2; 2) pin exact dependency versions in agent environments; 3) don't let agents install packages in environments that hold credentials.",
+        "cost": "About 15–30 minutes, free"
+      },
+      {
+        "title": "Add HydroMind-style verifiability rules to your agent config",
+        "steps": "1) Run models through fixed-command scripts and save configs, models and predictions to timestamped directories; 2) in your rules file, require the agent to write a research design before running experiments and to log every change; 3) add an audit step that reruns the analysis scripts on the saved data and checks the conclusions.",
+        "cost": "About 1–2 hours, free"
+      }
+    ],
+    "skip": [
+      {
+        "title": "Gemini 4 Neon release",
+        "reason": "Only third-party tracker coverage, with no official technical report or benchmarks, so no capability conclusions yet."
+      },
+      {
+        "title": "Google Weather Lab cyclone model article",
+        "reason": "Low-quality source and a doubtful date; possibly a rewrite of 2025 news."
+      }
+    ],
+    "watch_next": [
+      "Full Society of AI Scientists paper, plus HydroMind's result numbers and whether its code is released",
+      "Official Claude Ship docs (release date, plans) and the Lean/Mathlib community's formal verdict on the Riemann proof",
+      "Forecast-in-a-Box second stable release and its installation docs"
+    ]
+  }
+}
